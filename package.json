@@ -1,0 +1,22 @@
+{
+  "name": "sync-googlesheets-to-mondodb",
+  "version": "1.0.0",
+  "description": "Sync data between google sheets and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "keywords": [
+    "googleapi",
+    "mongodb",
+    "google",
+    "sheets"
+  ],
+  "author": "Ashish Tewari",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.5"
+  }
+}
