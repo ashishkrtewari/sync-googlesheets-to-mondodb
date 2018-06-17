@@ -4,22 +4,20 @@ const processRows = require('./process-rows');
 module.exports = (url, callback) => {
     var rows;
     return new Promise(resolve => {
-        if (url.indexOf('sheets.googleapis.com') > -1) {
-            axios.get(url)
-                .then(function (response) {
-                    if (response.data.values) {                    
-                        rows = response.data.values;
-                        var record = [],
-                            lowerCaseHeaders = true;
-    
-                        record = processRows({rows,record,lowerCaseHeaders});
+        axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${url}`)
+            .then(function (response) {
+                if (response.data.values) {
+                    rows = response.data.values;
+                    var record = [],
+                        lowerCaseHeaders = true;
 
-                        resolve(record);
-                    }
-                })
-                .catch(function (error) {
-                    console.log('Unable to fetch the googleapis data.');
-                });
-        }
-      });
+                    record = processRows({ rows, record, lowerCaseHeaders });
+
+                    resolve(record);
+                }
+            })
+            .catch(function (error) {
+                console.log('Unable to fetch the googleapis data.');
+            });
+    });
 };
